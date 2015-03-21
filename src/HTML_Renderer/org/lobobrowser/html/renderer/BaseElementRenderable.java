@@ -779,10 +779,15 @@ abstract class BaseElementRenderable extends BaseRCollection implements RElement
           } else {
             int btopBy3 = btop / 3;
             int btopBy2 = btop / 2;
-            if (borderStyle == HtmlValues.BORDER_STYLE_INSET)
+            if (borderStyle == HtmlValues.BORDER_STYLE_INSET) {
               g.setColor(borderTopDarkColor);
-            else if (borderStyle == HtmlValues.BORDER_STYLE_OUTSET)
+            } else if (borderStyle == HtmlValues.BORDER_STYLE_OUTSET) {
               g.setColor(borderTopLightColor);
+            } else if (borderStyle == HtmlValues.BORDER_STYLE_GROOVE) {
+              g.setColor(borderTopDarkColor);
+            } else if (borderStyle == HtmlValues.BORDER_STYLE_RIDGE) {
+              g.setColor(borderTopLightColor);
+            }
             for (int i = 0; i < btop; i++) {
               final int leftOffset = (i * bleft) / btop;
               final int rightOffset = (i * bright) / btop;
@@ -790,22 +795,19 @@ abstract class BaseElementRenderable extends BaseRCollection implements RElement
                 GUITasks.drawDashed(g, startX + leftOffset, startY + i, (startX + totalWidth) - rightOffset - 1, startY + i, 10 + btop, 6);
               } else {
                 if (borderStyle == HtmlValues.BORDER_STYLE_GROOVE) {
-                  if (i == 0) {
-                    g.setColor(borderTopDarkColor);
-                  } else if (i == btopBy2) {
+                  if (i == btopBy2) {
                     g.setColor(borderTopLightColor);
                   }
                 } else if (borderStyle == HtmlValues.BORDER_STYLE_RIDGE) {
-                  if (i == 0) {
-                    g.setColor(borderTopLightColor);
-                  } else if (i == btopBy2) {
+                  if (i == btopBy2) {
                     g.setColor(borderTopDarkColor);
                   }
                 }
                 g.drawLine(startX + leftOffset, startY + i, (startX + totalWidth) - rightOffset - 1, startY + i);
                 if (borderStyle == HtmlValues.BORDER_STYLE_DOUBLE) {
-                  if (i == btopBy3)
+                  if (i == btopBy3) {
                     i += btopBy3;
+                  }
                 }
               }
             }
@@ -822,10 +824,15 @@ abstract class BaseElementRenderable extends BaseRCollection implements RElement
           } else {
             int brightBy3 = bright / 3;
             int brightBy2 = bright / 2;
-            if (borderStyle == HtmlValues.BORDER_STYLE_INSET)
+            if (borderStyle == HtmlValues.BORDER_STYLE_INSET) {
               g.setColor(borderRightLightColor);
-            else if (borderStyle == HtmlValues.BORDER_STYLE_OUTSET)
+            } else if (borderStyle == HtmlValues.BORDER_STYLE_OUTSET) {
               g.setColor(borderRightDarkColor);
+            } else if (borderStyle == HtmlValues.BORDER_STYLE_GROOVE) {
+              g.setColor(borderRightLightColor);
+            } else if (borderStyle == HtmlValues.BORDER_STYLE_RIDGE) {
+              g.setColor(borderRightDarkColor);
+            }
             for (int i = 0; i < bright; i++) {
               final int topOffset = (i * btop) / bright;
               final int bottomOffset = (i * bbottom) / bright;
@@ -833,23 +840,19 @@ abstract class BaseElementRenderable extends BaseRCollection implements RElement
                 GUITasks.drawDashed(g, lastX - i, startY + topOffset, lastX - i, (startY + totalHeight) - bottomOffset - 1, 10 + bright, 6);
               } else {
                 if (borderStyle == HtmlValues.BORDER_STYLE_GROOVE) {
-                  if (i == 0) {
-                    g.setColor(borderRightLightColor);
-                  }
-                  else if (i == brightBy2) {
+                  if (i == brightBy2) {
                     g.setColor(borderRightDarkColor);
                   }
                 } else if (borderStyle == HtmlValues.BORDER_STYLE_RIDGE) {
-                  if (i == 0) {
-                    g.setColor(borderRightDarkColor);
-                  } else if (i == brightBy2) {
+                  if (i == brightBy2) {
                     g.setColor(borderRightLightColor);
                   }
                 }
                 g.drawLine(lastX - i, startY + topOffset, lastX - i, (startY + totalHeight) - bottomOffset - 1);
                 if (borderStyle == HtmlValues.BORDER_STYLE_DOUBLE) {
-                  if (i == brightBy3)
+                  if (i == brightBy3) {
                     i += brightBy3;
+                  }
                 }
               }
             }
@@ -866,10 +869,15 @@ abstract class BaseElementRenderable extends BaseRCollection implements RElement
           } else {
             int bbottomBy3 = bbottom / 3;
             int bbottomBy2 = bbottom / 2;
-            if (borderStyle == HtmlValues.BORDER_STYLE_INSET)
+            if (borderStyle == HtmlValues.BORDER_STYLE_INSET) {
               g.setColor(borderBottomLightColor);
-            else if (borderStyle == HtmlValues.BORDER_STYLE_OUTSET)
+            } else if (borderStyle == HtmlValues.BORDER_STYLE_OUTSET) {
               g.setColor(borderBottomDarkColor);
+            } else if (borderStyle == HtmlValues.BORDER_STYLE_GROOVE) {
+              g.setColor(borderBottomLightColor);
+            } else if (borderStyle == HtmlValues.BORDER_STYLE_RIDGE) {
+              g.setColor(borderBottomDarkColor);
+            }
             for (int i = 0; i < bbottom; i++) {
               final int leftOffset = (i * bleft) / bbottom;
               final int rightOffset = (i * bright) / bbottom;
@@ -877,22 +885,19 @@ abstract class BaseElementRenderable extends BaseRCollection implements RElement
                 GUITasks.drawDashed(g, startX + leftOffset, lastY - i, (startX + totalWidth) - rightOffset - 1, lastY - i, 10 + bbottom, 6);
               } else {
                 if (borderStyle == HtmlValues.BORDER_STYLE_GROOVE) {
-                  if (i == 0) {
-                    g.setColor(borderBottomLightColor);
-                  } else if (i == bbottomBy2) {
+                  if (i == bbottomBy2) {
                     g.setColor(borderBottomDarkColor);
                   }
                 } else if (borderStyle == HtmlValues.BORDER_STYLE_RIDGE) {
-                  if (i == 0) {
-                    g.setColor(borderBottomDarkColor);
-                  } else if (i == bbottomBy2) {
+                  if (i == bbottomBy2) {
                     g.setColor(borderBottomLightColor);
                   }
                 }
                 g.drawLine(startX + leftOffset, lastY - i, (startX + totalWidth) - rightOffset - 1, lastY - i);
                 if (borderStyle == HtmlValues.BORDER_STYLE_DOUBLE) {
-                  if (i == bbottomBy3)
+                  if (i == bbottomBy3) {
                     i += bbottomBy3;
+                  }
                 }
               }
             }
@@ -908,10 +913,15 @@ abstract class BaseElementRenderable extends BaseRCollection implements RElement
           } else {
             int bleftBy3 = bleft / 3;
             int bleftBy2 = bleft / 2;
-            if (borderStyle == HtmlValues.BORDER_STYLE_INSET)
+            if (borderStyle == HtmlValues.BORDER_STYLE_INSET) {
               g.setColor(borderBottomDarkColor);
-            else if (borderStyle == HtmlValues.BORDER_STYLE_OUTSET)
+            } else if (borderStyle == HtmlValues.BORDER_STYLE_OUTSET) {
               g.setColor(borderLeftLightColor);
+            } else if (borderStyle == HtmlValues.BORDER_STYLE_GROOVE) {
+              g.setColor(borderLeftDarkColor);
+            } else if (borderStyle == HtmlValues.BORDER_STYLE_RIDGE) {
+              g.setColor(borderLeftLightColor);
+            }
             for (int i = 0; i < bleft; i++) {
               final int topOffset = (i * btop) / bleft;
               final int bottomOffset = (i * bbottom) / bleft;
@@ -920,22 +930,19 @@ abstract class BaseElementRenderable extends BaseRCollection implements RElement
                     .drawDashed(g, startX + i, startY + topOffset, startX + i, (startY + totalHeight) - bottomOffset - 1, 10 + bleft, 6);
               } else {
                 if (borderStyle == HtmlValues.BORDER_STYLE_GROOVE) {
-                  if (i == 0) {
-                    g.setColor(borderLeftDarkColor);
-                  } else if (i == bleftBy2) {
+                  if (i == bleftBy2) {
                     g.setColor(borderLeftLightColor);
                   }
                 } else if (borderStyle == HtmlValues.BORDER_STYLE_RIDGE) {
-                  if (i == 0) {
-                    g.setColor(borderLeftLightColor);
-                  } else if (i == bleftBy2) {
+                  if (i == bleftBy2) {
                     g.setColor(borderBottomDarkColor);
                   }
                 }
                 g.drawLine(startX + i, startY + topOffset, startX + i, (startY + totalHeight) - bottomOffset - 1);
                 if (borderStyle == HtmlValues.BORDER_STYLE_DOUBLE) {
-                  if (i == bleftBy3)
+                  if (i == bleftBy3) {
                     i += bleftBy3;
+                  }
                 }
               }
             }
