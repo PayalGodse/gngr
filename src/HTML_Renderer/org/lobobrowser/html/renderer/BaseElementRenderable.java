@@ -759,18 +759,11 @@ abstract class BaseElementRenderable extends BaseRCollection implements RElement
       final Rectangle clipBounds = g.getClipBounds();
       if (!clientRegion.contains(clipBounds)) {
         final BorderInfo borderInfo = this.borderInfo;
-        final Color borderTopDarkColor = this.getBorderTopColor().darker();
-        final Color borderLeftDarkColor = this.getBorderLeftColor().darker();
-        final Color borderBottomDarkColor = this.getBorderBottomColor().darker();
-        final Color borderRightDarkColor = this.getBorderRightColor().darker();
-
-        final Color borderTopLightColor = this.getBorderTopColor().brighter();
-        final Color borderLeftLightColor = this.getBorderLeftColor().brighter();
-        final Color borderBottomLightColor = this.getBorderBottomColor().brighter();
-        final Color borderRightLightColor = this.getBorderRightColor().brighter();
-
+       
         if (btop > 0) {
           g.setColor(this.getBorderTopColor());
+          final Color borderTopDarkColor = g.getColor().darker();
+          final Color borderTopLightColor = g.getColor().brighter();
           final int borderStyle = borderInfo == null ? HtmlValues.BORDER_STYLE_SOLID : borderInfo.topStyle;
 
           if (borderStyle == HtmlValues.BORDER_STYLE_DOTTED) {
@@ -816,6 +809,8 @@ abstract class BaseElementRenderable extends BaseRCollection implements RElement
         if (bright > 0) {
           final int borderStyle = borderInfo == null ? HtmlValues.BORDER_STYLE_SOLID : borderInfo.rightStyle;
           g.setColor(this.getBorderRightColor());
+          final Color borderRightLightColor = g.getColor().brighter();
+          final Color borderRightDarkColor = g.getColor().darker();
           final int lastX = (startX + totalWidth) - 1;
 
           if (borderStyle == HtmlValues.BORDER_STYLE_DOTTED) {
@@ -861,6 +856,9 @@ abstract class BaseElementRenderable extends BaseRCollection implements RElement
         if (bbottom > 0) {
           final int borderStyle = borderInfo == null ? HtmlValues.BORDER_STYLE_SOLID : borderInfo.bottomStyle;
           g.setColor(this.getBorderBottomColor());
+          final Color borderBottomDarkColor = g.getColor().darker();
+          final Color borderBottomLightColor = g.getColor().brighter();
+
           final int lastY = (startY + totalHeight) - 1;
 
           if (borderStyle == HtmlValues.BORDER_STYLE_DOTTED) {
@@ -906,6 +904,8 @@ abstract class BaseElementRenderable extends BaseRCollection implements RElement
         if (bleft > 0) {
           final int borderStyle = borderInfo == null ? HtmlValues.BORDER_STYLE_SOLID : borderInfo.leftStyle;
           g.setColor(this.getBorderLeftColor());
+          final Color borderLeftDarkColor = g.getColor().darker();
+          final Color borderLeftLightColor = g.getColor().brighter();
 
           if (borderStyle == HtmlValues.BORDER_STYLE_DOTTED) {
             final int leftMid = startX + (bleft / 2);
@@ -914,7 +914,7 @@ abstract class BaseElementRenderable extends BaseRCollection implements RElement
             int bleftBy3 = bleft / 3;
             int bleftBy2 = bleft / 2;
             if (borderStyle == HtmlValues.BORDER_STYLE_INSET) {
-              g.setColor(borderBottomDarkColor);
+              g.setColor(borderLeftDarkColor);
             } else if (borderStyle == HtmlValues.BORDER_STYLE_OUTSET) {
               g.setColor(borderLeftLightColor);
             } else if (borderStyle == HtmlValues.BORDER_STYLE_GROOVE) {
@@ -935,7 +935,7 @@ abstract class BaseElementRenderable extends BaseRCollection implements RElement
                   }
                 } else if (borderStyle == HtmlValues.BORDER_STYLE_RIDGE) {
                   if (i == bleftBy2) {
-                    g.setColor(borderBottomDarkColor);
+                    g.setColor(borderLeftDarkColor);
                   }
                 }
                 g.drawLine(startX + i, startY + topOffset, startX + i, (startY + totalHeight) - bottomOffset - 1);
